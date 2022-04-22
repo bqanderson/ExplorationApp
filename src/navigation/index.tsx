@@ -80,9 +80,11 @@ function BottomTabNavigator() {
     <BottomTab.Navigator
       initialRouteName="Solarized"
       screenOptions={({ navigation }) => ({
+        headerStyle: {
+          shadowColor: 'transparent',
+        },
         title: 'Exploration App',
-        tabBarActiveTintColor: Colors.solarized.yellow,
-        headerRight: () => (
+        headerRight: ({ tintColor }) => (
           <Pressable
             onPress={() => navigation.navigate('InfoModal')}
             style={({ pressed }) => ({
@@ -92,12 +94,12 @@ function BottomTabNavigator() {
             <FontAwesome5
               name="info-circle"
               size={25}
-              color={Colors.solarized.yellow}
+              color={tintColor}
               style={{ marginRight: 15 }}
             />
           </Pressable>
         ),
-        headerLeft: () => (
+        headerLeft: ({ tintColor }) => (
           <Pressable
             onPress={() => navigation.navigate('InfoModal')}
             style={({ pressed }) => ({
@@ -107,7 +109,7 @@ function BottomTabNavigator() {
             <FontAwesome5
               name="exclamation-triangle"
               size={25}
-              color={Colors.solarized.yellow}
+              color={tintColor}
               style={{ marginLeft: 15 }}
             />
           </Pressable>
@@ -118,23 +120,37 @@ function BottomTabNavigator() {
         name="Solarized"
         component={SoloarizedScreen}
         options={() => ({
+          headerTintColor: Colors.solarized.yellow,
+          tabBarActiveTintColor: Colors.solarized.yellow,
           tabBarIcon: ({ color }) => <TabBarIcon name="adjust" color={color} />,
         })}
       />
       <BottomTab.Screen
         name="MplsDark"
-        component={MplsDarkScreen}
-        options={{
+        options={() => ({
+          headerStyle: {
+            backgroundColor:
+              colorScheme === 'light'
+                ? Colors.neutral.s150
+                : Colors.neutral.s700,
+          },
+          tabBarStyle: {
+            backgroundColor:
+              colorScheme === 'light'
+                ? Colors.neutral.s150
+                : Colors.neutral.black,
+          },
+          headerTintColor:
+            colorScheme === 'light'
+              ? Colors.primary.brand
+              : Colors.secondary.brand,
+          tabBarActiveTintColor:
+            colorScheme === 'light'
+              ? Colors.primary.brand
+              : Colors.secondary.brand,
           tabBarIcon: ({ color }) => <TabBarIcon name="city" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
-        options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
+        })}
+        component={MplsDarkScreen}
       />
     </BottomTab.Navigator>
   )

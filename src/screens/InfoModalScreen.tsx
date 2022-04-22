@@ -22,11 +22,11 @@ const InfoModalScreen = () => {
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
   headerContainer: {
-    paddingBottom: Sizing.x10,
+    paddingVertical: Sizing.x10,
     borderBottomWidth: Outlines.borderWidth.thin,
   },
   header: {
