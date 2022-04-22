@@ -7,7 +7,6 @@ import { SOLARIZED_COLORS } from '../constants'
 import { DarkTheme, LightTheme } from '../constants'
 import { Sizing, Typography, Outlines, Colors } from '../styles'
 
-
 const SolarizedExampleScreen: React.ReactNode = () => {
   const colorScheme = useColorScheme()
   return (
@@ -30,7 +29,15 @@ const SolarizedExampleScreen: React.ReactNode = () => {
           />
         )}
         renderSectionHeader={({ section }) => (
-          <View style={{ ...style.sectionHeaderContainer, backgroundColor: colorScheme === 'dark' ? DarkTheme.colors.background : LightTheme.colors.background }}>
+          <View
+            style={{
+              ...style.sectionHeaderContainer,
+              backgroundColor:
+                colorScheme === 'dark'
+                  ? DarkTheme.colors.background
+                  : LightTheme.colors.background,
+            }}
+          >
             <Text style={style.sectionHeader}>{section.title}</Text>
           </View>
         )}

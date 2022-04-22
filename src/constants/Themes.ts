@@ -8,7 +8,7 @@ export const LightTheme = {
     card: Colors.solarized.base2,
     text: Colors.solarized.base00,
     border: Colors.solarized.base1,
-    notification: Colors.solarized.yellow
+    notification: Colors.solarized.yellow,
   },
 }
 
@@ -20,6 +20,6 @@ export const DarkTheme = {
     card: Colors.solarized.base02,
     text: Colors.solarized.base0,
     border: Colors.solarized.base01,
-    notification: Colors.solarized.yellow
+    notification: Colors.solarized.yellow,
   },
 }

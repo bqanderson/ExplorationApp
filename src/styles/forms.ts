@@ -1,11 +1,11 @@
-import { TextStyle } from "react-native"
+import { TextStyle } from 'react-native'
 
-import * as Colors from "./colors"
-import * as Outlines from "./outlines"
-import * as Sizing from "./sizing"
-import * as Typography from "./typography"
+import * as Colors from './colors'
+import * as Outlines from './outlines'
+import * as Sizing from './sizing'
+import * as Typography from './typography'
 
-type Input = "primary"
+type Input = 'primary'
 export const input: Record<Input, TextStyle> = {
   primary: {
     ...Typography.body.x30,
@@ -17,7 +17,7 @@ export const input: Record<Input, TextStyle> = {
   },
 }
 
-type InputLabel = "primary"
+type InputLabel = 'primary'
 export const inputLabel: Record<InputLabel, TextStyle> = {
   primary: {
     ...Typography.subheader.x20,

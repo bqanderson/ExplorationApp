@@ -1,8 +1,8 @@
-import { ViewStyle, StyleSheet } from "react-native"
+import { ViewStyle, StyleSheet } from 'react-native'
 
-import * as Colors from "./colors"
+import * as Colors from './colors'
 
-type BorderRadius = "small" | "base" | "large" | "max"
+type BorderRadius = 'small' | 'base' | 'large' | 'max'
 export const borderRadius: Record<BorderRadius, number> = {
   small: 5,
   base: 10,
@@ -10,7 +10,7 @@ export const borderRadius: Record<BorderRadius, number> = {
   max: 9999,
 }
 
-type BorderWidth = "hairline" | "thin" | "base" | "thick"
+type BorderWidth = 'hairline' | 'thin' | 'base' | 'thick'
 export const borderWidth: Record<BorderWidth, number> = {
   hairline: StyleSheet.hairlineWidth,
   thin: 1,
@@ -18,7 +18,7 @@ export const borderWidth: Record<BorderWidth, number> = {
   thick: 3,
 }
 
-type Shadow = "base"
+type Shadow = 'base'
 export const shadow: Record<Shadow, ViewStyle> = {
   base: {
     shadowColor: Colors.neutral.s400,
