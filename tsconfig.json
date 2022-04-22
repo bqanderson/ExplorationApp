@@ -2,6 +2,7 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "jsx": "react",
+    "allowSyntheticDefaultImports": true,
     "strict": true
   },
   "exclude": ["**/__mocks__/*", "**/__tests__/*"]
