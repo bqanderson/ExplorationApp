@@ -16,11 +16,7 @@ import ModalScreen from '../screens/ModalScreen'
 import NotFoundScreen from '../screens/NotFoundScreen'
 import TabTwoScreen from '../screens/TabTwoScreen'
 import { InfoModal, SoloarizedScreen, MplsDarkScreen } from '../screens'
-import {
-  RootStackParamList,
-  RootTabParamList,
-  RootTabScreenProps,
-} from '../../types'
+import { RootStackParamList, RootTabParamList } from '../../types'
 import LinkingConfiguration from './LinkingConfiguration'
 
 import { Colors } from '../styles'

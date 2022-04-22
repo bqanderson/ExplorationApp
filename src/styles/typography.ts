@@ -92,7 +92,6 @@ export const header: Record<Header, TextStyle> = {
     ...lineHeight.x10,
     ...fontWeight.thin,
     letterSpacing: letterSpacing.x40,
-    color: Colors.secondary.brand,
     textTransform: textTransform.uppercase,
   },
   x20: {
@@ -100,7 +99,6 @@ export const header: Record<Header, TextStyle> = {
     ...lineHeight.x20,
     ...fontWeight.thin,
     letterSpacing: letterSpacing.x40,
-    color: Colors.secondary.brand,
     textTransform: textTransform.uppercase,
   },
   x30: {
@@ -108,7 +106,6 @@ export const header: Record<Header, TextStyle> = {
     ...lineHeight.x30,
     ...fontWeight.thin,
     letterSpacing: letterSpacing.x40,
-    color: Colors.secondary.brand,
     textTransform: textTransform.uppercase,
   },
   x40: {
@@ -116,7 +113,6 @@ export const header: Record<Header, TextStyle> = {
     ...lineHeight.x40,
     ...fontWeight.thin,
     letterSpacing: letterSpacing.x40,
-    color: Colors.secondary.brand,
     textTransform: textTransform.uppercase,
   },
   x50: {
@@ -124,7 +120,6 @@ export const header: Record<Header, TextStyle> = {
     ...lineHeight.x50,
     ...fontWeight.thin,
     letterSpacing: letterSpacing.x40,
-    color: Colors.secondary.brand,
     textTransform: textTransform.uppercase,
   },
   x60: {
@@ -132,7 +127,6 @@ export const header: Record<Header, TextStyle> = {
     ...lineHeight.x60,
     ...fontWeight.thin,
     letterSpacing: letterSpacing.x40,
-    color: Colors.secondary.brand,
     textTransform: textTransform.uppercase,
   },
   x70: {
@@ -140,7 +134,6 @@ export const header: Record<Header, TextStyle> = {
     ...lineHeight.x70,
     ...fontWeight.thin,
     letterSpacing: letterSpacing.x40,
-    color: Colors.secondary.brand,
     textTransform: textTransform.uppercase,
   },
 }
@@ -151,31 +144,26 @@ export const subheader: Record<Subheader, TextStyle> = {
     ...fontSize.x10,
     ...lineHeight.x10,
     ...fontWeight.semibold,
-    color: Colors.neutral.s400,
   },
   x20: {
     ...fontSize.x20,
     ...lineHeight.x20,
     ...fontWeight.semibold,
-    color: Colors.neutral.s400,
   },
   x30: {
     ...fontSize.x30,
     ...lineHeight.x30,
     ...fontWeight.semibold,
-    color: Colors.neutral.s400,
   },
   x40: {
     ...fontSize.x40,
     ...lineHeight.x40,
     ...fontWeight.semibold,
-    color: Colors.neutral.s400,
   },
   x50: {
     ...fontSize.x50,
     ...lineHeight.x50,
     ...fontWeight.semibold,
-    color: Colors.neutral.s400,
   },
 }
 

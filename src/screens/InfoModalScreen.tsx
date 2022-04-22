@@ -1,13 +1,20 @@
 import React from 'react'
 import { StatusBar } from 'expo-status-bar'
-import { Text, View, StyleSheet } from 'react-native'
+import { Platform, StyleSheet } from 'react-native'
 
+import { Text, View } from '../components'
 import { Sizing, Typography, Outlines, Colors } from '../styles'
 
 const InfoModalScreen = () => {
   return (
     <View style={style.container}>
-      <Text>Information</Text>
+      <View style={style.headerContainer}>
+        <Text style={style.header}>Exploration App</Text>
+        <Text style={style.subheader}>
+          An native mobile app build with React Navite
+        </Text>
+      </View>
+      <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </View>
   )
 }
@@ -15,32 +22,21 @@ const InfoModalScreen = () => {
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: Sizing.x20,
     justifyContent: 'center',
-    backgroundColor: Colors.neutral.black,
-  },
-  button: {
     alignItems: 'center',
-    marginHorizontal: Sizing.x40,
-    marginBottom: Sizing.x10,
-    padding: Sizing.x10,
-    borderRadius: Outlines.borderRadius.base,
   },
-  mplsBtn: {
-    backgroundColor: Colors.primary.brand,
+  headerContainer: {
+    paddingBottom: Sizing.x10,
+    borderBottomWidth: Outlines.borderWidth.thin,
   },
-  mplsLabel: {
-    ...Typography.subheader.x30,
-    color: Colors.neutral.white,
-    textTransform: 'uppercase',
+  header: {
+    ...Typography.header.x60,
+    letterSpacing: 6,
+    textAlign: 'center',
   },
-  solarBtn: {
-    backgroundColor: Colors.solarized.yellow,
-  },
-  solarLabel: {
-    ...Typography.subheader.x30,
-    color: Colors.solarized.base2,
-    textTransform: 'uppercase',
+  subheader: {
+    ...Typography.subheader.x20,
+    textAlign: 'center',
   },
 })
 

@@ -23,3 +23,8 @@ export const DarkTheme = {
     notification: Colors.solarized.yellow,
   },
 }
+
+export default {
+  light: { ...LightTheme.colors },
+  dark: { ...DarkTheme.colors },
+}
