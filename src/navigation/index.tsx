@@ -3,19 +3,19 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
+import React from 'react'
 import { FontAwesome5 } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import * as React from 'react'
-import { ColorSchemeName, Pressable } from 'react-native'
-import { DarkTheme, LightTheme } from '../constants'
+import { ColorSchemeName, Pressable, View } from 'react-native'
 
+import { DarkTheme, LightTheme } from '../constants'
 import useColorScheme from '../hooks/useColorScheme'
 import ModalScreen from '../screens/ModalScreen'
 import NotFoundScreen from '../screens/NotFoundScreen'
 import TabTwoScreen from '../screens/TabTwoScreen'
-import { SoloarizedScreen, MplsDarkScreen } from '../screens'
+import { InfoModal, SoloarizedScreen, MplsDarkScreen } from '../screens'
 import {
   RootStackParamList,
   RootTabParamList,
@@ -35,7 +35,7 @@ export default function Navigation({
       linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? DarkTheme : LightTheme}
     >
-      <InfoModalNavigator />
+      <RootNavigator />
     </NavigationContainer>
   )
 }
@@ -46,7 +46,7 @@ export default function Navigation({
  */
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
-function InfoModalNavigator() {
+function RootNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -61,6 +61,11 @@ function InfoModalNavigator() {
       />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen
+          name="InfoModal"
+          options={{ title: 'Information' }}
+          component={InfoModal}
+        />
       </Stack.Group>
     </Stack.Navigator>
   )
@@ -78,38 +83,52 @@ function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Solarized"
-      screenOptions={{
+      screenOptions={({ navigation }) => ({
+        title: 'Exploration App',
         tabBarActiveTintColor: Colors.solarized.yellow,
-      }}
+        headerRight: () => (
+          <Pressable
+            onPress={() => navigation.navigate('InfoModal')}
+            style={({ pressed }) => ({
+              opacity: pressed ? 0.5 : 1,
+            })}
+          >
+            <FontAwesome5
+              name="info-circle"
+              size={25}
+              color={Colors.solarized.yellow}
+              style={{ marginRight: 15 }}
+            />
+          </Pressable>
+        ),
+        headerLeft: () => (
+          <Pressable
+            onPress={() => navigation.navigate('InfoModal')}
+            style={({ pressed }) => ({
+              opacity: pressed ? 0.5 : 1,
+            })}
+          >
+            <FontAwesome5
+              name="exclamation-triangle"
+              size={25}
+              color={Colors.solarized.yellow}
+              style={{ marginLeft: 15 }}
+            />
+          </Pressable>
+        ),
+      })}
     >
       <BottomTab.Screen
         name="Solarized"
         component={SoloarizedScreen}
-        options={({ navigation }: RootTabScreenProps<'Solarized'>) => ({
-          title: 'Solarized',
+        options={() => ({
           tabBarIcon: ({ color }) => <TabBarIcon name="adjust" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('NotFound')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}
-            >
-              <FontAwesome5
-                name="info-circle"
-                size={25}
-                color={Colors.solarized.yellow}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
         })}
       />
       <BottomTab.Screen
         name="MplsDark"
         component={MplsDarkScreen}
         options={{
-          title: 'MPLS Dark Pro',
           tabBarIcon: ({ color }) => <TabBarIcon name="city" color={color} />,
         }}
       />
