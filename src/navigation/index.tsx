@@ -3,67 +3,85 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import * as React from 'react';
-import { ColorSchemeName, Pressable } from 'react-native';
-import { DarkTheme, LightTheme } from '../constants';
+import { FontAwesome5 } from '@expo/vector-icons'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import * as React from 'react'
+import { ColorSchemeName, Pressable } from 'react-native'
+import { DarkTheme, LightTheme } from '../constants'
 
-import useColorScheme from '../hooks/useColorScheme';
-import ModalScreen from '../screens/ModalScreen';
-import NotFoundScreen from '../screens/NotFoundScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { SoloarizedScreen } from '../screens'
-import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../../types';
-import LinkingConfiguration from './LinkingConfiguration';
+import useColorScheme from '../hooks/useColorScheme'
+import ModalScreen from '../screens/ModalScreen'
+import NotFoundScreen from '../screens/NotFoundScreen'
+import TabTwoScreen from '../screens/TabTwoScreen'
+import { SoloarizedScreen, MplsDarkScreen } from '../screens'
+import {
+  RootStackParamList,
+  RootTabParamList,
+  RootTabScreenProps,
+} from '../../types'
+import LinkingConfiguration from './LinkingConfiguration'
 
 import { Colors } from '../styles'
 
-export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+export default function Navigation({
+  colorScheme,
+}: {
+  colorScheme: ColorSchemeName
+}) {
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : LightTheme}>
+      theme={colorScheme === 'dark' ? DarkTheme : LightTheme}
+    >
       <InfoModalNavigator />
     </NavigationContainer>
-  );
+  )
 }
 
 /**
  * A root stack navigator is often used for displaying modals on top of all other content.
  * https://reactnavigation.org/docs/modal
  */
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<RootStackParamList>()
 
 function InfoModalNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      <Stack.Screen
+        name="Root"
+        component={BottomTabNavigator}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="NotFound"
+        component={NotFoundScreen}
+        options={{ title: 'Oops!' }}
+      />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
     </Stack.Navigator>
-  );
+  )
 }
 
 /**
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
-const BottomTab = createBottomTabNavigator<RootTabParamList>();
+const BottomTab = createBottomTabNavigator<RootTabParamList>()
 
 function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
+  const colorScheme = useColorScheme()
 
   return (
     <BottomTab.Navigator
       initialRouteName="Solarized"
       screenOptions={{
         tabBarActiveTintColor: Colors.solarized.yellow,
-      }}>
+      }}
+    >
       <BottomTab.Screen
         name="Solarized"
         component={SoloarizedScreen}
@@ -72,11 +90,12 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <TabBarIcon name="adjust" color={color} />,
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate('Modal')}
+              onPress={() => navigation.navigate('NotFound')}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
+              })}
+            >
+              <FontAwesome5
                 name="info-circle"
                 size={25}
                 color={Colors.solarized.yellow}
@@ -87,6 +106,14 @@ function BottomTabNavigator() {
         })}
       />
       <BottomTab.Screen
+        name="MplsDark"
+        component={MplsDarkScreen}
+        options={{
+          title: 'MPLS Dark Pro',
+          tabBarIcon: ({ color }) => <TabBarIcon name="city" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
         name="TabTwo"
         component={TabTwoScreen}
         options={{
@@ -95,15 +122,15 @@ function BottomTabNavigator() {
         }}
       />
     </BottomTab.Navigator>
-  );
+  )
 }
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
+  name: React.ComponentProps<typeof FontAwesome5>['name']
+  color: string
 }) {
-  return <FontAwesome size={24} {...props} />;
+  return <FontAwesome5 size={24} {...props} />
 }
