@@ -25,6 +25,11 @@ const linking: LinkingOptions<RootStackParamList> = {
               TabTwoScreen: 'two',
             },
           },
+          MplsDark: {
+            screens: {
+              SolarizedScreen: 'solarized',
+            },
+          },
         },
       },
       Modal: 'modal',

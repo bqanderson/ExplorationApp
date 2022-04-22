@@ -3,7 +3,7 @@ import { Colors } from '../styles'
 export const LightTheme = {
   dark: false,
   colors: {
-    primary: Colors.solarized.orange,
+    primary: Colors.solarized.blue,
     background: Colors.solarized.base3,
     card: Colors.solarized.base2,
     text: Colors.solarized.base00,
@@ -15,7 +15,7 @@ export const LightTheme = {
 export const DarkTheme = {
   dark: true,
   colors: {
-    primary: Colors.solarized.orange,
+    primary: Colors.solarized.blue,
     background: Colors.solarized.base03,
     card: Colors.solarized.base02,
     text: Colors.solarized.base0,

@@ -1,25 +1,22 @@
 import React from 'react'
 import { View, Text, StyleSheet, SectionList } from 'react-native'
-
-import { useColorScheme } from '../hooks'
 import { ColorBox } from '../components'
-import { SOLARIZED_COLORS } from '../constants'
-import { DarkTheme, LightTheme } from '../constants'
+import { MPLS_DARK_COLORS } from '../constants'
+
 import { Sizing, Typography, Outlines, Colors } from '../styles'
 
-const SolarizedExampleScreen = () => {
-  const colorScheme = useColorScheme()
+const MplsDarkExampleScreen = () => {
   return (
     <View style={style.container}>
       <View style={style.headerContainer}>
-        <Text style={style.header}>Solarized</Text>
+        <Text style={style.header}>MPLS Dark Pro</Text>
         <Text style={style.subheader}>
-          Colors Palette of the 'Solaized' theme.
+          Accent colors of the 'MPLS Dark Pro' theme.
         </Text>
       </View>
       <SectionList
         style={style.colorBoxContainer}
-        sections={SOLARIZED_COLORS}
+        sections={MPLS_DARK_COLORS}
         keyExtractor={(item, index) => `${item.hexCode}_0${index}`}
         renderItem={({ item }) => (
           <ColorBox
@@ -29,15 +26,7 @@ const SolarizedExampleScreen = () => {
           />
         )}
         renderSectionHeader={({ section }) => (
-          <View
-            style={{
-              ...style.sectionHeaderContainer,
-              backgroundColor:
-                colorScheme === 'dark'
-                  ? DarkTheme.colors.background
-                  : LightTheme.colors.background,
-            }}
-          >
+          <View style={style.sectionHeaderContainer}>
             <Text style={style.sectionHeader}>{section.title}</Text>
           </View>
         )}
@@ -52,15 +41,16 @@ const style = StyleSheet.create({
     flex: 1,
     paddingTop: Sizing.x10,
     paddingHorizontal: Sizing.x20,
+    backgroundColor: Colors.neutral.black,
   },
   headerContainer: {
     paddingBottom: Sizing.x10,
+    backgroundColor: Colors.neutral.black,
     borderBottomWidth: Outlines.borderWidth.thin,
-    borderColor: Colors.solarized.base1,
+    borderColor: Colors.neutral.s500,
   },
   header: {
     ...Typography.header.x60,
-    color: Colors.solarized.yellow,
     letterSpacing: 6,
     textAlign: 'center',
   },
@@ -72,21 +62,21 @@ const style = StyleSheet.create({
     flex: 1,
     padding: Sizing.x10,
     paddingTop: 0,
+    backgroundColor: Colors.neutral.black,
   },
   sectionHeaderContainer: {
     paddingVertical: Sizing.x10,
-    backgroundColor: Colors.solarized.base03,
+    backgroundColor: Colors.neutral.black,
   },
   sectionHeader: {
     ...Typography.subheader.x30,
-    color: Colors.solarized.base01,
     textTransform: 'uppercase',
   },
   divider: {
     marginTop: Sizing.x10,
     borderBottomWidth: Outlines.borderWidth.hairline,
-    borderColor: Colors.solarized.base2,
+    borderColor: Colors.neutral.s400,
   },
 })
 
-export default SolarizedExampleScreen
+export default MplsDarkExampleScreen

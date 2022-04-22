@@ -3,7 +3,7 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome } from '@expo/vector-icons'
+import { FontAwesome5 } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
@@ -15,7 +15,7 @@ import useColorScheme from '../hooks/useColorScheme'
 import ModalScreen from '../screens/ModalScreen'
 import NotFoundScreen from '../screens/NotFoundScreen'
 import TabTwoScreen from '../screens/TabTwoScreen'
-import { SoloarizedScreen } from '../screens'
+import { SoloarizedScreen, MplsDarkScreen } from '../screens'
 import {
   RootStackParamList,
   RootTabParamList,
@@ -90,12 +90,12 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <TabBarIcon name="adjust" color={color} />,
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate('Modal')}
+              onPress={() => navigation.navigate('NotFound')}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
               })}
             >
-              <FontAwesome
+              <FontAwesome5
                 name="info-circle"
                 size={25}
                 color={Colors.solarized.yellow}
@@ -104,6 +104,14 @@ function BottomTabNavigator() {
             </Pressable>
           ),
         })}
+      />
+      <BottomTab.Screen
+        name="MplsDark"
+        component={MplsDarkScreen}
+        options={{
+          title: 'MPLS Dark Pro',
+          tabBarIcon: ({ color }) => <TabBarIcon name="city" color={color} />,
+        }}
       />
       <BottomTab.Screen
         name="TabTwo"
@@ -121,8 +129,8 @@ function BottomTabNavigator() {
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name']
+  name: React.ComponentProps<typeof FontAwesome5>['name']
   color: string
 }) {
-  return <FontAwesome size={24} {...props} />
+  return <FontAwesome5 size={24} {...props} />
 }
