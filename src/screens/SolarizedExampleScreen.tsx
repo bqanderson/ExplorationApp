@@ -24,6 +24,7 @@ const SolarizedExampleScreen = () => {
             color={item.hexCode}
             label={item.colorName}
             labelColor={item.labelColor}
+            border={item.border}
           />
         )}
         renderSectionHeader={({ section }) => (

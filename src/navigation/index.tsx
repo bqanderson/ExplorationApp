@@ -120,6 +120,7 @@ function BottomTabNavigator() {
         name="Solarized"
         component={SoloarizedScreen}
         options={() => ({
+          title: 'Solarized',
           headerTintColor: Colors.solarized.yellow,
           tabBarActiveTintColor: Colors.solarized.yellow,
           tabBarIcon: ({ color }) => <TabBarIcon name="adjust" color={color} />,
@@ -128,6 +129,7 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="MplsDark"
         options={() => ({
+          title: 'MPLS Dark Pro',
           headerStyle: {
             backgroundColor:
               colorScheme === 'light'
@@ -143,11 +145,11 @@ function BottomTabNavigator() {
           headerTintColor:
             colorScheme === 'light'
               ? Colors.primary.brand
-              : Colors.secondary.brand,
+              : Colors.secondary.s600,
           tabBarActiveTintColor:
             colorScheme === 'light'
               ? Colors.primary.brand
-              : Colors.secondary.brand,
+              : Colors.secondary.s600,
           tabBarIcon: ({ color }) => <TabBarIcon name="city" color={color} />,
         })}
         component={MplsDarkScreen}

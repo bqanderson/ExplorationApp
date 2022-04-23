@@ -7,15 +7,19 @@ interface ColorBoxProps {
   color: string
   label: string
   labelColor: string
+  border?: any
 }
 
 const ColorBox: FunctionComponent<ColorBoxProps> = ({
   color,
   label,
   labelColor,
+  border,
 }) => {
   return (
-    <View style={{ ...style.colorBoxContainer, backgroundColor: color }}>
+    <View
+      style={[{ ...style.colorBoxContainer, backgroundColor: color }, border]}
+    >
       <Text
         style={{ ...style.colorBoxLabel, color: labelColor }}
       >{`${label}: ${color}`}</Text>
