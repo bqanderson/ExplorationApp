@@ -92,25 +92,10 @@ function BottomTabNavigator() {
             })}
           >
             <FontAwesome5
-              name="info-circle"
+              name="cog"
               size={25}
               color={tintColor}
-              style={{ marginRight: 15 }}
-            />
-          </Pressable>
-        ),
-        headerLeft: ({ tintColor }) => (
-          <Pressable
-            onPress={() => navigation.navigate('InfoModal')}
-            style={({ pressed }) => ({
-              opacity: pressed ? 0.5 : 1,
-            })}
-          >
-            <FontAwesome5
-              name="exclamation-triangle"
-              size={25}
-              color={tintColor}
-              style={{ marginLeft: 15 }}
+              style={{ marginRight: 18 }}
             />
           </Pressable>
         ),
@@ -121,7 +106,7 @@ function BottomTabNavigator() {
         component={SoloarizedScreen}
         options={() => ({
           title: 'Solarized',
-          headerTintColor: Colors.solarized.yellow,
+          headerTintColor: Colors.solarized.base01,
           tabBarActiveTintColor: Colors.solarized.yellow,
           tabBarIcon: ({ color }) => <TabBarIcon name="adjust" color={color} />,
         })}
@@ -140,12 +125,10 @@ function BottomTabNavigator() {
             backgroundColor:
               colorScheme === 'light'
                 ? Colors.neutral.s150
-                : Colors.neutral.black,
+                : Colors.neutral.s700,
           },
           headerTintColor:
-            colorScheme === 'light'
-              ? Colors.primary.brand
-              : Colors.secondary.s600,
+            colorScheme === 'light' ? Colors.neutral.s700 : Colors.neutral.s400,
           tabBarActiveTintColor:
             colorScheme === 'light'
               ? Colors.primary.brand
