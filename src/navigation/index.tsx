@@ -1,35 +1,27 @@
-/**
- * If you are not familiar with React Navigation, refer to the "Fundamentals" guide:
- * https://reactnavigation.org/docs/getting-started
- *
- */
 import React from 'react'
 import { FontAwesome5 } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { ColorSchemeName, Pressable, View } from 'react-native'
+import { Pressable } from 'react-native'
+import { useTheme } from '../themes'
 
 import { DarkTheme, LightTheme } from '../constants'
-import useColorScheme from '../hooks/useColorScheme'
 import ModalScreen from '../screens/ModalScreen'
 import NotFoundScreen from '../screens/NotFoundScreen'
-import TabTwoScreen from '../screens/TabTwoScreen'
 import { InfoModal, SoloarizedScreen, MplsDarkScreen } from '../screens'
 import { RootStackParamList, RootTabParamList } from '../../types'
 import LinkingConfiguration from './LinkingConfiguration'
 
 import { Colors } from '../styles'
 
-export default function Navigation({
-  colorScheme,
-}: {
-  colorScheme: ColorSchemeName
-}) {
+export default function Navigation() {
+  const { mode } = useTheme()
+
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : LightTheme}
+      theme={mode === 'dark' ? DarkTheme : LightTheme}
     >
       <RootNavigator />
     </NavigationContainer>
@@ -74,7 +66,7 @@ function RootNavigator() {
 const BottomTab = createBottomTabNavigator<RootTabParamList>()
 
 function BottomTabNavigator() {
-  const colorScheme = useColorScheme()
+  const { mode } = useTheme()
 
   return (
     <BottomTab.Navigator
@@ -117,22 +109,16 @@ function BottomTabNavigator() {
           title: 'MPLS Dark Pro',
           headerStyle: {
             backgroundColor:
-              colorScheme === 'light'
-                ? Colors.neutral.s150
-                : Colors.neutral.s700,
+              mode === 'light' ? Colors.neutral.s150 : Colors.neutral.s700,
           },
           tabBarStyle: {
             backgroundColor:
-              colorScheme === 'light'
-                ? Colors.neutral.s150
-                : Colors.neutral.s700,
+              mode === 'light' ? Colors.neutral.s150 : Colors.neutral.s700,
           },
           headerTintColor:
-            colorScheme === 'light' ? Colors.neutral.s700 : Colors.neutral.s400,
+            mode === 'light' ? Colors.neutral.s700 : Colors.neutral.s400,
           tabBarActiveTintColor:
-            colorScheme === 'light'
-              ? Colors.primary.brand
-              : Colors.secondary.s600,
+            mode === 'light' ? Colors.primary.brand : Colors.secondary.s600,
           tabBarIcon: ({ color }) => <TabBarIcon name="city" color={color} />,
         })}
         component={MplsDarkScreen}
