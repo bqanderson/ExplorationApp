@@ -1,6 +1,6 @@
 import { Colors } from '../styles'
 
-export const LightTheme = {
+export const DefaultTheme = {
   dark: false,
   colors: {
     primary: Colors.solarized.blue,
@@ -25,6 +25,7 @@ export const DarkTheme = {
 }
 
 export default {
-  light: { ...LightTheme.colors },
+  light: { ...DefaultTheme.colors },
   dark: { ...DarkTheme.colors },
+  'no-preference': { ...DefaultTheme.colors },
 }

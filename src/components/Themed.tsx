@@ -1,25 +1,20 @@
-/**
- * Learn more about Light and Dark modes:
- * https://docs.expo.io/guides/color-schemes/
- */
-
 import React from 'react'
 import { Text as DefaultText, View as DefaultView } from 'react-native'
+import { useTheme } from '../themes'
 
 import { ThemeColors } from '../constants'
-import useColorScheme from '../hooks/useColorScheme'
 
 export function useThemeColor(
-  props: { light?: string; dark?: string },
+  colorProps: { light?: string; dark?: string; 'no-preference'?: string },
   colorName: keyof typeof ThemeColors.light & keyof typeof ThemeColors.dark,
 ) {
-  const theme = useColorScheme()
-  const colorFromProps = props[theme]
+  const { mode } = useTheme()
+  const colorFromProps = colorProps[mode || 'no-preference']
 
   if (colorFromProps) {
     return colorFromProps
   } else {
-    return ThemeColors[theme][colorName]
+    return ThemeColors[mode || 'no-preference'][colorName]
   }
 }
 

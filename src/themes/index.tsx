@@ -3,9 +3,14 @@ import { Appearance, AppearanceProvider } from 'react-native-appearance'
 
 const defaultMode = Appearance.getColorScheme()
 
-const ThemeContext = createContext({
+type ThemeContextType = {
+  mode: 'light' | 'dark' | 'no-preference' | undefined
+  setMode: (mode: 'light' | 'dark' | 'no-preference' | undefined) => void
+}
+
+const ThemeContext = createContext<ThemeContextType>({
   mode: defaultMode,
-  setMode: (mode: 'light' | 'dark' | 'no-preference') => mode,
+  setMode: (mode: 'light' | 'dark' | 'no-preference' | undefined) => mode,
 })
 
 export const useTheme = () => useContext(ThemeContext)
@@ -15,8 +20,10 @@ type Props = {
 }
 
 const ManageThemeProvider = ({ children }: Props) => {
-  const [themeState, SetThemeState] = useState(defaultMode)
-  const setMode = (mode: 'light' | 'dark' | 'no-preference') =>
+  const [themeState, SetThemeState] = useState<
+    'light' | 'dark' | 'no-preference' | undefined
+  >(defaultMode)
+  const setMode = (mode: 'light' | 'dark' | 'no-preference' | undefined) =>
     SetThemeState(mode)
 
   useEffect(() => {

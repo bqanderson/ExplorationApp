@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Pressable } from 'react-native'
 import { useTheme } from '../themes'
 
-import { DarkTheme, LightTheme } from '../constants'
+import { DarkTheme, DefaultTheme } from '../constants'
 import ModalScreen from '../screens/ModalScreen'
 import NotFoundScreen from '../screens/NotFoundScreen'
 import { InfoModal, SoloarizedScreen, MplsDarkScreen } from '../screens'
@@ -21,7 +21,7 @@ export default function Navigation() {
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={mode === 'dark' ? DarkTheme : LightTheme}
+      theme={mode === 'dark' ? DarkTheme : DefaultTheme}
     >
       <RootNavigator />
     </NavigationContainer>
@@ -51,7 +51,7 @@ function RootNavigator() {
         <Stack.Screen name="Modal" component={ModalScreen} />
         <Stack.Screen
           name="InfoModal"
-          options={{ title: 'Information' }}
+          options={{ title: 'Theme Settings' }}
           component={InfoModal}
         />
       </Stack.Group>
