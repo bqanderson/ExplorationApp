@@ -8,21 +8,27 @@ import { useTheme } from '../themes'
 
 const InfoModalScreen = () => {
   const { mode, setMode } = useTheme()
+
   return (
     <View style={style.container}>
       <View style={style.headerContainer}>
-        <Text style={style.header}>Color Settings</Text>
+        <Text style={style.header}>Theme Settings</Text>
         <Text style={style.subheader}>
           Choose if you want a 'Dark' or 'Light' color theme
         </Text>
       </View>
-      <View>
-        <Switch
-          value={mode === 'dark'}
-          onValueChange={(value: boolean) => {
-            setMode(value ? 'dark' : 'light')
-          }}
-        />
+      <View style={style.swithcContainer}>
+        <View>
+          <Switch
+            value={mode === 'dark'}
+            onValueChange={(value: boolean) => {
+              setMode(value ? 'dark' : 'light')
+            }}
+          />
+        </View>
+        <View style={{ backgroundColor: 'none' }}>
+          <Text style={style.subheader}>Dark Mode:</Text>
+        </View>
       </View>
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </View>
@@ -32,12 +38,18 @@ const InfoModalScreen = () => {
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    paddingHorizontal: Sizing.x20,
   },
   headerContainer: {
     paddingVertical: Sizing.x10,
     borderBottomWidth: Outlines.borderWidth.thin,
+  },
+  swithcContainer: {
+    flexDirection: 'row-reverse',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: Sizing.x10,
+    marginTop: Sizing.x10,
   },
   header: {
     ...Typography.header.x60,
