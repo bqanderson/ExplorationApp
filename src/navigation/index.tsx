@@ -1,41 +1,29 @@
-/**
- * If you are not familiar with React Navigation, refer to the "Fundamentals" guide:
- * https://reactnavigation.org/docs/getting-started
- *
- */
+import React from 'react'
 import { FontAwesome5 } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import * as React from 'react'
-import { ColorSchemeName, Pressable } from 'react-native'
-import { DarkTheme, LightTheme } from '../constants'
+import { Pressable } from 'react-native'
+import { useTheme } from '../themes'
 
-import useColorScheme from '../hooks/useColorScheme'
+import { DarkTheme, DefaultTheme } from '../constants'
 import ModalScreen from '../screens/ModalScreen'
 import NotFoundScreen from '../screens/NotFoundScreen'
-import TabTwoScreen from '../screens/TabTwoScreen'
-import { SoloarizedScreen, MplsDarkScreen } from '../screens'
-import {
-  RootStackParamList,
-  RootTabParamList,
-  RootTabScreenProps,
-} from '../../types'
+import { InfoModal, SoloarizedScreen, MplsDarkScreen } from '../screens'
+import { RootStackParamList, RootTabParamList } from '../../types'
 import LinkingConfiguration from './LinkingConfiguration'
 
 import { Colors } from '../styles'
 
-export default function Navigation({
-  colorScheme,
-}: {
-  colorScheme: ColorSchemeName
-}) {
+export default function Navigation() {
+  const { mode } = useTheme()
+
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : LightTheme}
+      theme={mode === 'dark' ? DarkTheme : DefaultTheme}
     >
-      <InfoModalNavigator />
+      <RootNavigator />
     </NavigationContainer>
   )
 }
@@ -46,7 +34,7 @@ export default function Navigation({
  */
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
-function InfoModalNavigator() {
+function RootNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -61,6 +49,11 @@ function InfoModalNavigator() {
       />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen
+          name="InfoModal"
+          options={{ title: 'Theme Settings' }}
+          component={InfoModal}
+        />
       </Stack.Group>
     </Stack.Navigator>
   )
@@ -73,53 +66,62 @@ function InfoModalNavigator() {
 const BottomTab = createBottomTabNavigator<RootTabParamList>()
 
 function BottomTabNavigator() {
-  const colorScheme = useColorScheme()
+  const { mode } = useTheme()
 
   return (
     <BottomTab.Navigator
       initialRouteName="Solarized"
-      screenOptions={{
-        tabBarActiveTintColor: Colors.solarized.yellow,
-      }}
+      screenOptions={({ navigation }) => ({
+        headerStyle: {
+          shadowColor: 'transparent',
+        },
+        title: 'Exploration App',
+        headerRight: ({ tintColor }) => (
+          <Pressable
+            onPress={() => navigation.navigate('InfoModal')}
+            style={({ pressed }) => ({
+              opacity: pressed ? 0.5 : 1,
+            })}
+          >
+            <FontAwesome5
+              name="cog"
+              size={25}
+              color={tintColor}
+              style={{ marginRight: 18 }}
+            />
+          </Pressable>
+        ),
+      })}
     >
       <BottomTab.Screen
         name="Solarized"
         component={SoloarizedScreen}
-        options={({ navigation }: RootTabScreenProps<'Solarized'>) => ({
+        options={() => ({
           title: 'Solarized',
+          headerTintColor: Colors.solarized.base01,
+          tabBarActiveTintColor: Colors.solarized.yellow,
           tabBarIcon: ({ color }) => <TabBarIcon name="adjust" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('NotFound')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}
-            >
-              <FontAwesome5
-                name="info-circle"
-                size={25}
-                color={Colors.solarized.yellow}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
         })}
       />
       <BottomTab.Screen
         name="MplsDark"
-        component={MplsDarkScreen}
-        options={{
+        options={() => ({
           title: 'MPLS Dark Pro',
+          headerStyle: {
+            backgroundColor:
+              mode === 'light' ? Colors.neutral.s150 : Colors.neutral.s700,
+          },
+          tabBarStyle: {
+            backgroundColor:
+              mode === 'light' ? Colors.neutral.s150 : Colors.neutral.s700,
+          },
+          headerTintColor:
+            mode === 'light' ? Colors.neutral.s700 : Colors.neutral.s400,
+          tabBarActiveTintColor:
+            mode === 'light' ? Colors.primary.brand : Colors.secondary.s600,
           tabBarIcon: ({ color }) => <TabBarIcon name="city" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
-        options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
+        })}
+        component={MplsDarkScreen}
       />
     </BottomTab.Navigator>
   )

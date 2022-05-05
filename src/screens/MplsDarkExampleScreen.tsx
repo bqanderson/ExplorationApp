@@ -1,15 +1,42 @@
 import React from 'react'
-import { View, Text, StyleSheet, SectionList } from 'react-native'
-import { ColorBox } from '../components'
-import { MPLS_DARK_COLORS } from '../constants'
+import { StyleSheet, SectionList } from 'react-native'
 
+import { MPLS_DARK_COLORS } from '../constants'
+import { ColorBox, Text, View } from '../components'
+import { useColorScheme } from '../hooks'
 import { Sizing, Typography, Outlines, Colors } from '../styles'
 
 const MplsDarkExampleScreen = () => {
+  const colorScheme = useColorScheme()
+
   return (
-    <View style={style.container}>
-      <View style={style.headerContainer}>
-        <Text style={style.header}>MPLS Dark Pro</Text>
+    <View
+      style={{
+        ...style.container,
+        backgroundColor:
+          colorScheme === 'light' ? Colors.neutral.white : Colors.neutral.black,
+      }}
+    >
+      <View
+        style={{
+          ...style.headerContainer,
+          backgroundColor:
+            colorScheme === 'light'
+              ? Colors.neutral.white
+              : Colors.neutral.black,
+        }}
+      >
+        <Text
+          style={{
+            ...style.header,
+            color:
+              colorScheme === 'light'
+                ? Colors.primary.brand
+                : Colors.secondary.brand,
+          }}
+        >
+          MPLS Dark Pro
+        </Text>
         <Text style={style.subheader}>
           Accent colors of the 'MPLS Dark Pro' theme.
         </Text>
@@ -23,10 +50,19 @@ const MplsDarkExampleScreen = () => {
             color={item.hexCode}
             label={item.colorName}
             labelColor={item.labelColor}
+            border={item.border}
           />
         )}
         renderSectionHeader={({ section }) => (
-          <View style={style.sectionHeaderContainer}>
+          <View
+            style={{
+              ...style.sectionHeaderContainer,
+              backgroundColor:
+                colorScheme === 'light'
+                  ? Colors.neutral.white
+                  : Colors.neutral.black,
+            }}
+          >
             <Text style={style.sectionHeader}>{section.title}</Text>
           </View>
         )}
@@ -41,13 +77,10 @@ const style = StyleSheet.create({
     flex: 1,
     paddingTop: Sizing.x10,
     paddingHorizontal: Sizing.x20,
-    backgroundColor: Colors.neutral.black,
   },
   headerContainer: {
     paddingBottom: Sizing.x10,
-    backgroundColor: Colors.neutral.black,
     borderBottomWidth: Outlines.borderWidth.thin,
-    borderColor: Colors.neutral.s500,
   },
   header: {
     ...Typography.header.x60,
@@ -62,11 +95,9 @@ const style = StyleSheet.create({
     flex: 1,
     padding: Sizing.x10,
     paddingTop: 0,
-    backgroundColor: Colors.neutral.black,
   },
   sectionHeaderContainer: {
     paddingVertical: Sizing.x10,
-    backgroundColor: Colors.neutral.black,
   },
   sectionHeader: {
     ...Typography.subheader.x30,
@@ -75,7 +106,6 @@ const style = StyleSheet.create({
   divider: {
     marginTop: Sizing.x10,
     borderBottomWidth: Outlines.borderWidth.hairline,
-    borderColor: Colors.neutral.s400,
   },
 })
 

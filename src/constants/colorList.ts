@@ -1,4 +1,4 @@
-import { Colors } from '../styles'
+import { Colors, Outlines } from '../styles'
 
 export const MPLS_DARK_COLORS = [
   {
@@ -63,6 +63,10 @@ export const MPLS_DARK_COLORS = [
         colorName: 'White',
         hexCode: Colors.neutral.white,
         labelColor: Colors.neutral.black,
+        border: {
+          borderColor: Colors.neutral.black,
+          borderWidth: Outlines.borderWidth.hairline,
+        },
       },
       {
         colorName: 'Neutral (s100)',
@@ -123,6 +127,10 @@ export const MPLS_DARK_COLORS = [
         colorName: 'Black',
         hexCode: Colors.neutral.black,
         labelColor: Colors.neutral.white,
+        border: {
+          borderColor: Colors.neutral.white,
+          borderWidth: Outlines.borderWidth.hairline,
+        },
       },
     ],
   },
@@ -136,6 +144,10 @@ export const SOLARIZED_COLORS = [
         colorName: 'Base 03',
         hexCode: Colors.solarized.base03,
         labelColor: Colors.solarized.base0,
+        border: {
+          borderColor: Colors.solarized.base3,
+          borderWidth: Outlines.borderWidth.hairline,
+        },
       },
       {
         colorName: 'Base 02',
@@ -181,6 +193,10 @@ export const SOLARIZED_COLORS = [
         colorName: 'Base 3',
         hexCode: Colors.solarized.base3,
         labelColor: Colors.solarized.base00,
+        border: {
+          borderColor: Colors.solarized.base03,
+          borderWidth: Outlines.borderWidth.hairline,
+        },
       },
     ],
   },

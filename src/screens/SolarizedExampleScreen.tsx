@@ -1,14 +1,12 @@
 import React from 'react'
-import { View, Text, StyleSheet, SectionList } from 'react-native'
+import { StyleSheet, SectionList } from 'react-native'
 
-import { useColorScheme } from '../hooks'
+import { Text, View } from '../components'
 import { ColorBox } from '../components'
 import { SOLARIZED_COLORS } from '../constants'
-import { DarkTheme, LightTheme } from '../constants'
 import { Sizing, Typography, Outlines, Colors } from '../styles'
 
 const SolarizedExampleScreen = () => {
-  const colorScheme = useColorScheme()
   return (
     <View style={style.container}>
       <View style={style.headerContainer}>
@@ -26,18 +24,11 @@ const SolarizedExampleScreen = () => {
             color={item.hexCode}
             label={item.colorName}
             labelColor={item.labelColor}
+            border={item.border}
           />
         )}
         renderSectionHeader={({ section }) => (
-          <View
-            style={{
-              ...style.sectionHeaderContainer,
-              backgroundColor:
-                colorScheme === 'dark'
-                  ? DarkTheme.colors.background
-                  : LightTheme.colors.background,
-            }}
-          >
+          <View style={style.sectionHeaderContainer}>
             <Text style={style.sectionHeader}>{section.title}</Text>
           </View>
         )}
@@ -56,7 +47,6 @@ const style = StyleSheet.create({
   headerContainer: {
     paddingBottom: Sizing.x10,
     borderBottomWidth: Outlines.borderWidth.thin,
-    borderColor: Colors.solarized.base1,
   },
   header: {
     ...Typography.header.x60,
@@ -75,7 +65,6 @@ const style = StyleSheet.create({
   },
   sectionHeaderContainer: {
     paddingVertical: Sizing.x10,
-    backgroundColor: Colors.solarized.base03,
   },
   sectionHeader: {
     ...Typography.subheader.x30,
@@ -85,7 +74,6 @@ const style = StyleSheet.create({
   divider: {
     marginTop: Sizing.x10,
     borderBottomWidth: Outlines.borderWidth.hairline,
-    borderColor: Colors.solarized.base2,
   },
 })
 
